@@ -41,16 +41,17 @@ class Game
     end
    
     def afficher_grille
-      puts "   A   B   C"
-      @tableau.each_with_index do |ligne, index|
-        print "#{index + 1} "
-        ligne.each_with_index do |casee, col_index|
-          print "| #{casee} "
+        puts "   A   B   C"
+        @tableau.each_with_index do |ligne, index|
+          print "#{index + 1} "
+          ligne.each_with_index do |casee, col_index|
+            colored_case = casee == 'X' ? "\e[31mX\e[0m" : (casee == 'O' ? "\e[34mO\e[0m" : casee)
+            print "| #{colored_case} "
+          end
+          puts "|"
+          puts "  |---|---|---|" if index < 2
         end
-        puts "|"
-        puts "  |---|---|---|" if index < 2
       end
-    end
 
     def is_going
         @tableau.each do |lignes|
